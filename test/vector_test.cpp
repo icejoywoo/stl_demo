@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cstdio>
 #include <iostream>
 #include <string>
@@ -14,8 +15,9 @@ public:
     }
 };
 
-class VectorTest : public testing::Test {
-protected:
+// class VectorTest : public testing::Test {
+class VectorTest : public testing::TestWithParam<int> {
+public:
     // before first case
     static void SetUpTestCase() {
     }
@@ -86,3 +88,11 @@ TEST_F(VectorTest, RemoveElement) {
     }
     EXPECT_EQ(10, int_vector.size());
 }
+
+TEST_P(VectorTest, FindElementInVector) {
+    int n = GetParam();
+    EXPECT_EQ(n, *std::find(int_vector.begin(), int_vector.end(), n));
+}
+
+INSTANTIATE_TEST_CASE_P(VectorFindTest, VectorTest, testing::Values(0, 1, 2, 3, 5, 9, 10, 99));
+INSTANTIATE_TEST_CASE_P(VectorFindAllTest, VectorTest, testing::Range(0, 99, 1));
