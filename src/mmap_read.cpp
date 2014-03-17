@@ -1,3 +1,8 @@
+/**
+ * @author: icejoywoo
+ * @date: 2014.3.10
+ * @brief: mmap read shared memory
+ */
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <fcntl.h>

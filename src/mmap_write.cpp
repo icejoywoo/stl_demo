@@ -1,3 +1,8 @@
+/**
+ * @author: icejoywoo
+ * @date: 2014.3.10
+ * @brief: mmap write shared memory
+ */
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <fcntl.h>
@@ -35,6 +40,7 @@ int main(int argc, char** argv) {
         name[0]++;
     }
     printf("Initialization is over.\n");
+    // wait to sync disk
     sleep(10);
 
     munmap(p_list, sizeof(person) * 10);
