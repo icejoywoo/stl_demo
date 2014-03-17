@@ -95,4 +95,5 @@ TEST_P(VectorTest, FindElementInVector) {
 }
 
 INSTANTIATE_TEST_CASE_P(VectorFindTest, VectorTest, testing::Values(0, 1, 2, 3, 5, 9, 10, 99));
-INSTANTIATE_TEST_CASE_P(VectorFindAllTest, VectorTest, testing::Range(0, 99, 1));
+INSTANTIATE_TEST_CASE_P(VectorFindAllTest, VectorTest, testing::Range(0, 100, 1));
+
