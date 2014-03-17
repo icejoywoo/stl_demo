@@ -1,0 +1,11 @@
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+.deps
+.libs
+.dirstamp
+.sconsign.dblite
+.DS_Store
+
