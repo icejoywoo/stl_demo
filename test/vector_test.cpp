@@ -1,5 +1,7 @@
-#include <vector>
+#include <cstdio>
+#include <iostream>
 #include <string>
+#include <vector>
 
 #include "gtest/gtest.h"
 
@@ -10,6 +12,8 @@ TEST(VectorTest, BasicInit) {
     }
 
     EXPECT_EQ(int_vector.size(), 100);
+    printf("max_size: %lu\n", int_vector.max_size());
+    std::cout << "max_size: " << int_vector.max_size() << std::endl;
 }
 
 TEST(VectorTest, IterateElements) {

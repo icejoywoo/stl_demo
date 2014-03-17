@@ -19,7 +19,7 @@ def compile_dir(d):
                     LIBS = libs, 
                     LIBPATH = libs_path)
 
-dirs = ['src']
+dirs = ['src', 'test']
 
 for d in dirs:
     compile_dir(d)
