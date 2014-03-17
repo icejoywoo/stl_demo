@@ -76,5 +76,13 @@ TEST_F(VectorTest, ReverseInterateElements) {
 }
 
 TEST_F(VectorTest, RemoveElement) {
-
+    for (std::vector<int>::iterator it = int_vector.begin();
+            it != int_vector.end();) {
+        if (*it >= 10) {
+            it = int_vector.erase(it);
+        } else {
+            ++it;
+        }
+    }
+    EXPECT_EQ(10, int_vector.size());
 }
