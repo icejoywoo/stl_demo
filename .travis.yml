@@ -4,6 +4,15 @@ compiler:
     - clang
     - gcc
 
-sciprt:
+before_install:
+    - sudo apt-get update
+
+install:
+    - sudo apt-get install scons
+
+before_script:
+    - echo "before script"
+
+script:
     - scons -Q
-    - ./*_test
+    - echo "Run Unit Test." && ./*_test
