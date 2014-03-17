@@ -4,4 +4,6 @@ compiler:
     - clang
     - gcc
 
-sciprt: scons
+sciprt:
+    - scons
+    - ./*_test
