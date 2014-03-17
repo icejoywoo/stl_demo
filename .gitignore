@@ -3,6 +3,9 @@
 *.so
 *.dll
 *.dylib
+
+*.pump
+
 .deps
 .libs
 .dirstamp

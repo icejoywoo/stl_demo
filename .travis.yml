@@ -5,5 +5,5 @@ compiler:
     - gcc
 
 sciprt:
-    - scons
+    - scons -Q
     - ./*_test
