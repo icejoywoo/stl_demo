@@ -101,12 +101,12 @@ TEST_F(VectorTest, IterateElements) {
         EXPECT_EQ(a++, *it);
     }
 
-    // const_iterator just for read-only
-    a = 0;
-    for (std::vector<int>::const_iterator it = int_vector.cbegin();
-            it != int_vector.cend(); ++it) {
-        EXPECT_EQ(a++, *it);
-    }
+    // const_iterator just for read-only, c++11
+    //a = 0;
+    //for (std::vector<int>::const_iterator it = int_vector.cbegin();
+    //        it != int_vector.cend(); ++it) {
+    //    EXPECT_EQ(a++, *it);
+    //}
     
     // using operator [] or at function
     a = 0;
@@ -125,12 +125,12 @@ TEST_F(VectorTest, ReverseInterateElements) {
         EXPECT_EQ(a--, *it);
     }
 
-    // const_reverse_iterator
-    a = 99;
-    for (std::vector<int>::const_reverse_iterator it = int_vector.crbegin();
-            it != int_vector.crend(); ++it) {
-        EXPECT_EQ(a--, *it);
-    }
+    // const_reverse_iterator c++11
+    //a = 99;
+    //for (std::vector<int>::const_reverse_iterator it = int_vector.crbegin();
+    //        it != int_vector.crend(); ++it) {
+    //    EXPECT_EQ(a--, *it);
+    //}
 }
 
 TEST_F(VectorTest, RemoveElement) {
