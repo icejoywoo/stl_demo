@@ -15,4 +15,4 @@ before_script:
 
 script:
     - scons -Q
-    - echo "Run Unit Test." && ./*_test
+    - echo "Run Unit Test." && ./stl_unittest
