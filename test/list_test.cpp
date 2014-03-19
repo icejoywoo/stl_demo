@@ -40,4 +40,33 @@ TEST_F(ListTest, IterateElements) {
         printf("%c", *it);
     }
     printf("\n");
+
+    // reverse iterator
+    a = 'z';
+    for (std::list<char>::reverse_iterator it = m_list.rbegin();
+            it != m_list.rend(); ++it) {
+        EXPECT_EQ(a--, *it);
+        printf("%c", *it);
+    }
+    printf("\n");
+}
+
+TEST_F(ListTest, PopBackIteration) {
+    char a = 'z';
+    while (!m_list.empty()) {
+        EXPECT_EQ(a--, m_list.back());
+        printf("%c", m_list.back());
+        m_list.pop_back();
+    }
+    printf("\n");
+}
+
+TEST_F(ListTest, PopFrontIteration) {
+    char a = 'a';
+    while (!m_list.empty()) {
+        EXPECT_EQ(a++, m_list.front());
+        printf("%c", m_list.front());
+        m_list.pop_front();
+    }
+    printf("\n");
 }
