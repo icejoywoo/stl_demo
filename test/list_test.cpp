@@ -27,7 +27,7 @@ TEST_F(ListTest, BasicInit) {
             it != letters.end(); ++it) {
         EXPECT_EQ(a++, *it);
     }
-    EXPECT_EQ(26, m_list.size());
+    EXPECT_EQ(26u, m_list.size());
     printf("max_size: %lu\n", m_list.max_size());
 }
 
@@ -40,10 +40,4 @@ TEST_F(ListTest, IterateElements) {
         printf("%c", *it);
     }
     printf("\n");
-
-    a = 'a';
-    for (std::list<char>::const_iterator it = m_list.cbegin();
-            it != m_list.cend(); ++it) {
-        EXPECT_EQ(a++, *it);
-    }
 }
