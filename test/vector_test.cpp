@@ -31,7 +31,7 @@ public:
             int_vector.push_back(i);
         }
     }
-    
+
     virtual void TearDown() {
         int_vector.clear();
     }
@@ -48,7 +48,7 @@ TEST_F(VectorTest, BasicInit) {
         printf("size: %lu\n", vec.size());
     }
 
-    EXPECT_EQ(100, vec.size());
+    EXPECT_EQ(100u, vec.size());
     printf("max_size: %lu\n", vec.max_size());
     printf("capacity: %lu\n", vec.capacity()); // 128
     printf("size: %lu\n", vec.size());
@@ -57,7 +57,7 @@ TEST_F(VectorTest, BasicInit) {
 TEST_F(VectorTest, ReserveSize) {
     printf("before capacity: %lu\n", int_vector.capacity()); // 128
     int_vector.reserve(1000);
-    EXPECT_EQ(1000, int_vector.capacity());
+    EXPECT_EQ(1000u, int_vector.capacity());
     printf("after capacity: %lu\n", int_vector.capacity()); // 1024
 }
 
@@ -82,15 +82,15 @@ TEST_F(VectorTest, Resize) {
 
 TEST_F(VectorTest, ClearVector) {
     int_vector.clear();
-    EXPECT_EQ(0, int_vector.size());
-    EXPECT_EQ(128, int_vector.capacity());
+    EXPECT_EQ(0u, int_vector.size());
+    EXPECT_EQ(128u, int_vector.capacity());
 
     {
         std::vector<int> temp;
         int_vector.swap(temp);
     }
-    EXPECT_EQ(0, int_vector.size());
-    EXPECT_EQ(0, int_vector.capacity());
+    EXPECT_EQ(0u, int_vector.size());
+    EXPECT_EQ(0u, int_vector.capacity());
 }
 
 TEST_F(VectorTest, IterateElements) {
@@ -107,7 +107,7 @@ TEST_F(VectorTest, IterateElements) {
     //        it != int_vector.cend(); ++it) {
     //    EXPECT_EQ(a++, *it);
     //}
-    
+
     // using operator [] or at function
     a = 0;
     for (size_t i = 0; i < int_vector.size(); ++i) {
@@ -119,7 +119,7 @@ TEST_F(VectorTest, IterateElements) {
 
 TEST_F(VectorTest, ReverseInterateElements) {
     int a = 99;
-    // reverse_iterator 
+    // reverse_iterator
     for (std::vector<int>::reverse_iterator it = int_vector.rbegin();
             it != int_vector.rend(); ++it) {
         EXPECT_EQ(a--, *it);
@@ -143,7 +143,7 @@ TEST_F(VectorTest, RemoveElement) {
             ++it;
         }
     }
-    EXPECT_EQ(10, int_vector.size());
+    EXPECT_EQ(10u, int_vector.size());
 }
 
 TEST_P(VectorTest, FindElementInVector) {
@@ -167,6 +167,6 @@ TEST_F(VectorTest, PopBackElement) {
     }
 
     EXPECT_EQ(4950, sum);
-    EXPECT_EQ(0, int_vector.size());
+    EXPECT_EQ(0u, int_vector.size());
 }
 
