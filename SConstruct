@@ -4,8 +4,8 @@ import os
 
 env = Environment(CC = "gcc", CXX = "g++", CXXFLAGS = "-Wall -g -O0")
 
-env.SConscript('thirdparty/gmock/SConscript')
-env.SConscript('thirdparty/gtest/SConscript')
+SConscript(['thirdparty/gmock/SConscript',
+            'thirdparty/gtest/SConscript'])
 
 libs = ['pthread', 'gtest', 'gtest_main']
 libs_path = ['thirdparty/gtest/lib', 'thirdparty/gmock/lib']
