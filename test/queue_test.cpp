@@ -34,3 +34,30 @@ TEST_F(QueueTest, EmptyQueue) {
     // std::cout << empty_queue.front() << std::endl; // call front() will core when queue is empty
     EXPECT_EQ(0, empty_queue.size());
 }
+
+TEST_F(QueueTest, PriorityQueueMaxHeap) {
+    // template <class T, class Container = vector<T>,
+    // class Compare = less<typename Container::value_type> > class priority_queue
+    std::priority_queue<int> max_heap; // like max heap, there is max value on top
+    for (int i = 0; i < 100; ++i) {
+        max_heap.push(i);
+    }
+
+    int a = 99;
+    while (!max_heap.empty()) {
+        EXPECT_EQ(a--, max_heap.top());
+        max_heap.pop();
+    }
+}
+
+TEST_F(QueueTest, PriorityQueueMinHeap) {
+    std::priority_queue<int, std::deque<int>, std::greater<int> > min_heap; // like min heap
+    for (int i = 0; i < 100; ++i) {
+        min_heap.push(i);
+    }
+    int a = 0;
+    while (!min_heap.empty()) {
+        EXPECT_EQ(a++, min_heap.top());
+        min_heap.pop();
+    }
+}
