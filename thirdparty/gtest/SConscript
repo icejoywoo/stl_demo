@@ -1,6 +1,6 @@
 #!/bin/env python
 
-env = Environment(CC = "gcc", CXX = "g++", CXXFLAGS = "-Wall -g -O0 -isystem -c")
+env = Environment(CC = "gcc", CXX = "g++", CXXFLAGS = "-g -O0 -isystem -c")
 
 env.Object(Glob("src/*.cc"), CPPPATH = ['include', '.'])
 
