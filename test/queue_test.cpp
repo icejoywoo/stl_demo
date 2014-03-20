@@ -4,6 +4,7 @@
 
 #include "gtest/gtest.h"
 
+/// FIFO
 class QueueTest : public testing::Test {
 public:
     virtual void SetUp() {
@@ -26,4 +27,10 @@ TEST_F(QueueTest, PopElements) {
         EXPECT_EQ(a++, m_queue.front());
         m_queue.pop();
     }
+}
+
+TEST_F(QueueTest, EmptyQueue) {
+    std::queue<std::string> empty_queue;
+    // std::cout << empty_queue.front() << std::endl; // call front() will core when queue is empty
+    EXPECT_EQ(0, empty_queue.size());
 }
