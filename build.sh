@@ -2,4 +2,4 @@
 
 scons -Q
 
-./*_test
+./stl_unittest
