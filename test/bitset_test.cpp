@@ -27,15 +27,12 @@ TEST_F(BitsetTest, SetTest) {
 
 TEST_F(BitsetTest, TransformationTest) {
     EXPECT_EQ(0x0000u, m_bitset.to_ulong());
-    EXPECT_EQ(0x0000ll, m_bitset.to_ullong());
     EXPECT_STREQ("0000000000000000", m_bitset.to_string().c_str());
     m_bitset.set(); // set all bits to one
     EXPECT_EQ(0xFFFFu, m_bitset.to_ulong());
-    EXPECT_EQ(0xFFFFll, m_bitset.to_ullong());
     EXPECT_STREQ("1111111111111111", m_bitset.to_string().c_str());
     m_bitset.set(3, 0); // set val as the value for the bit in the pos
     EXPECT_EQ(0xFFF7u, m_bitset.to_ulong());
-    EXPECT_EQ(0xFFF7ll, m_bitset.to_ullong());
     EXPECT_STREQ("1111111111110111", m_bitset.to_string().c_str());
 }
 
