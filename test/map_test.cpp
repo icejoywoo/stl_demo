@@ -87,7 +87,7 @@ TEST_F(MapTest, MultimapTest) {
     typedef std::multimap<int, int>::iterator iterator_type;
     for (iterator_type it = multimap.begin(); it != multimap.end();) {
         printf("%d: %d\n", it->first, it->second);
-        it = multimap.erase(it);
+        multimap.erase(it++);
     }
     
 }
