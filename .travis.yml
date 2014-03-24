@@ -9,6 +9,7 @@ before_install:
 
 install:
     - sudo apt-get install scons
+    - sudo apt-get install libpoco-dev
 
 before_script:
     - echo "before script"
