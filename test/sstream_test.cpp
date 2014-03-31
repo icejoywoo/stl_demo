@@ -37,3 +37,21 @@ TEST_F(SstreamTest, SplitWords) {
     EXPECT_EQ(expected, result);
     printf("%d\n", expected == result);
 }
+
+TEST_F(SstreamTest, IntConvertToString) {
+    int number = 12345;
+    std::stringstream stream;
+    std::string temp;
+    stream << number;
+    stream >> temp;
+    EXPECT_STREQ("12345", temp.c_str());
+}
+
+TEST_F(SstreamTest, StringConvertToInt) {
+    std::string str("12345");
+    std::stringstream stream;
+    int number;
+    stream << str;
+    stream >> number;
+    EXPECT_EQ(12345, number);
+}
