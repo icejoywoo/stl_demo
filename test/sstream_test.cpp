@@ -45,6 +45,7 @@ TEST_F(SstreamTest, IntConvertToString) {
     stream << number;
     stream >> temp;
     EXPECT_STREQ("12345", temp.c_str());
+    stream.clear();
 }
 
 TEST_F(SstreamTest, StringConvertToInt) {
@@ -54,4 +55,5 @@ TEST_F(SstreamTest, StringConvertToInt) {
     stream << str;
     stream >> number;
     EXPECT_EQ(12345, number);
+    stream.clear();
 }
