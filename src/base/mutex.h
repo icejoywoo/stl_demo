@@ -62,6 +62,34 @@ private:
     const MutexLockGuard& operator=(const MutexLockGuard&);
 };
 
+/// pthread condition wrapper
+class Condition {
+public:
+    explicit Condition(MutexLock& mutex)
+        : m_mutex(mutex) {
+        pthread_cond_init(&m_cond, NULL);
+    }
+
+    void Wait() {
+        pthread_cond_wait(&m_cond, m_mutex.GetMutex());
+    }
+
+    void Notify() {
+        pthread_cond_signal(&m_cond);
+    }
+
+    void NotifyAll() {
+        pthread_cond_broadcast(&m_cond);
+    }
+
+private:
+    pthread_cond_t m_cond;
+    MutexLock& m_mutex;
+    // noncopyable
+    Condition(const Condition&);
+    const Condition& operator=(const Condition&);
+};
+
 } // end base namespace
 } // end icejoywoo namespace
 
