@@ -11,7 +11,7 @@ libs = ['pthread', 'gtest', 'gtest_main']
 libs_path = ['thirdparty/gtest/lib', 'thirdparty/gmock/lib']
 cpp_path = ['thirdparty/gtest/include', 'thirdparty/gmock/include']
 # config all code dirs
-dirs = ['src', 'src/base']
+dirs = ['src', 'src/base', 'src/boost', 'src/poco']
 
 def compile_dir(d):
     for sf in Glob(os.path.join(d, '*.cpp')):
