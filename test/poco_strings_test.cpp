@@ -1,4 +1,6 @@
 #include <string>
+#include "Poco/Format.h" // for format
+#include "Poco/NumberFormatter.h" // for NumberFormatter class
 #include "Poco/String.h"
 
 #include "gtest/gtest.h"
@@ -128,4 +130,31 @@ TEST_F(PocoStringsTest, StringCat) {
     vec.push_back(s3);
     ASSERT_TRUE(cat(std::string(), vec.begin(), vec.end()) == "onetwothree");
     ASSERT_TRUE(cat(std::string(","), vec.begin(), vec.end()) == "one,two,three");
+}
+
+TEST_F(PocoStringsTest, NumberFormat) {
+    using Poco::NumberFormatter;
+    std::string str;
+    ASSERT_TRUE(NumberFormatter::format(123) == "123");
+    // for integer, param 2 is width
+    ASSERT_TRUE(NumberFormatter::format(123, 5) == "  123");
+    ASSERT_TRUE(NumberFormatter::format(-123, 5) == " -123");
+    ASSERT_TRUE(NumberFormatter::format0(123, 5) == "00123");
+    ASSERT_TRUE(NumberFormatter::format0(-123, 5) == "-0123");
+    // for float, param 2 is precision, param 3 is width
+    ASSERT_TRUE(NumberFormatter::format(1.5) == "1.5");
+    ASSERT_TRUE(NumberFormatter::format(1.5, 2) == "1.50");
+    ASSERT_TRUE(NumberFormatter::format(1.5234, 2) == "1.52");
+    ASSERT_TRUE(NumberFormatter::format(1.5254, 2) == "1.53");
+    // for pointer
+    if (sizeof(void*) == 4) {
+        std::cout << "32bit" << std::endl;
+        ASSERT_TRUE(NumberFormatter::format((void*) 0x12345678) == "12345678");
+    } else {
+        std::cout << "64bit" << std::endl;
+        ASSERT_TRUE(NumberFormatter::format((void*) 0x12345678) == "0000000012345678");
+    }
+}
+
+TEST_F(PocoStringsTest, PrintfStyleFormat) {
 }

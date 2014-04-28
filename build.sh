@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+set -u
+set -x # for debug
+
 scons -Q
 if [ $? -ne 0 ]; then
     echo "Failed to build!!!"
