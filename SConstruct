@@ -7,7 +7,7 @@ env = Environment(CC = "gcc", CXX = "g++", CXXFLAGS = "-Wall -g -O0")
 SConscript(['thirdparty/gmock/SConscript',
             'thirdparty/gtest/SConscript'])
 
-libs = ['pthread', 'gtest', 'gtest_main']
+libs = ['pthread', 'gtest', 'gtest_main', 'PocoFoundation']
 libs_path = ['thirdparty/gtest/lib', 'thirdparty/gmock/lib']
 cpp_path = ['thirdparty/gtest/include', 'thirdparty/gmock/include']
 # config all code dirs
@@ -23,7 +23,7 @@ def compile_dir(d):
 
 def compile_test(d):
     env.Object(Glob(os.path.join(d, '*_test.cpp')), CPPPATH=[d] + cpp_path + dirs)
-    env.Program(target="stl_unittest",
+    env.Program(target="unittest",
                 source=Glob(os.path.join(d, '*_test.o')),
                 CPPPATH=[d] + cpp_path + dirs,
                 LIBS=libs, LIBPATH=libs_path)

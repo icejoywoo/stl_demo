@@ -6,7 +6,7 @@ if [ $? -ne 0 ]; then
     exit -1
 fi
 
-./stl_unittest
+./unittest
 if [ $? -ne 0 ]; then
     echo "Failed to run unittest!!!"
     exit -1
