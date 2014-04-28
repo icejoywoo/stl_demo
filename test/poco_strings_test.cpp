@@ -2,6 +2,7 @@
 #include "Poco/Format.h" // for format
 #include "Poco/NumberFormatter.h" // for NumberFormatter class
 #include "Poco/String.h"
+#include "Poco/StringTokenizer.h"
 
 #include "gtest/gtest.h"
 
@@ -146,6 +147,8 @@ TEST_F(PocoStringsTest, NumberFormat) {
     ASSERT_TRUE(NumberFormatter::format(1.5, 2) == "1.50");
     ASSERT_TRUE(NumberFormatter::format(1.5234, 2) == "1.52");
     ASSERT_TRUE(NumberFormatter::format(1.5254, 2) == "1.53");
+    // hex
+    ASSERT_TRUE(NumberFormatter::formatHex(123) == "7B");
     // for pointer
     if (sizeof(void*) == 4) {
         std::cout << "32bit" << std::endl;
@@ -157,4 +160,44 @@ TEST_F(PocoStringsTest, NumberFormat) {
 }
 
 TEST_F(PocoStringsTest, PrintfStyleFormat) {
+    // the printf-style format in Poco implementation
+    using Poco::format; // support less than or equal to six parameters
+    std::string s;
+    format(s, "The answer to life, the universe and everything is %d", 42); // lol
+    ASSERT_TRUE(s == "The answer to life, the universe and everything is 42");
+
+    s = format("%d + %d = %d", 2, 2, 4);
+    ASSERT_TRUE(s == "2 + 2 = 4");
+    s = format("%4d", 4);
+    ASSERT_TRUE(s == "   4");
+    s = format("%-4d", 4);
+    ASSERT_TRUE(s == "4   ");
+
+    // 1.4.6p: return [ERRFMT] if it encounters format string error
+    // 1.3.6: throw Poco::BadCastException
+    try {
+        s = format("%d", std::string("error"));
+        // for 1.4.6
+        ASSERT_TRUE(s == "[ERRFMT]");
+    } catch(Poco::BadCastException& e) {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+TEST_F(PocoStringsTest, StringTokenizer) {
+    using Poco::StringTokenizer;
+    using Poco::cat;
+
+    StringTokenizer t1("red, green, blue", ",");
+    ASSERT_EQ(3, t1.count());
+    ASSERT_TRUE(cat(std::string(), t1.begin(), t1.end()) == "red green blue"); // notice the whitespace
+
+    // options: StringTokenizer::TOK_TRIM StringTokenizer::TOK_IGNORE_EMPTY
+    StringTokenizer t2("red, green, , blue", ",", StringTokenizer::TOK_TRIM);
+    ASSERT_EQ(4, t2.count());
+    ASSERT_TRUE(cat(std::string(), t2.begin(), t2.end()) == "redgreenblue"); // notice the whitespace
+
+    StringTokenizer t3("red, green, , blue", ",", StringTokenizer::TOK_TRIM | StringTokenizer::TOK_IGNORE_EMPTY);
+    ASSERT_EQ(3, t3.count());
+    ASSERT_TRUE(cat(std::string(), t3.begin(), t3.end()) == "redgreenblue"); // notice the whitespace
 }
