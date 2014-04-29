@@ -7,7 +7,7 @@ env = Environment(CC = "gcc", CXX = "g++", CXXFLAGS = "-Wall -g -O0")
 SConscript(['thirdparty/gmock/SConscript',
             'thirdparty/gtest/SConscript'])
 
-libs = ['pthread', 'gtest', 'gtest_main', 'PocoFoundation']
+libs = ['pthread', 'gtest', 'gtest_main', 'PocoFoundation', 'PocoNet']
 libs_path = ['thirdparty/gtest/lib', 'thirdparty/gmock/lib']
 cpp_path = ['thirdparty/gtest/include', 'thirdparty/gmock/include']
 # config all code dirs
