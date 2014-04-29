@@ -146,7 +146,7 @@ TEST_F(PocoStringsTest, NumberFormat) {
     ASSERT_TRUE(NumberFormatter::format(1.5) == "1.5");
     ASSERT_TRUE(NumberFormatter::format(1.5, 2) == "1.50");
     ASSERT_TRUE(NumberFormatter::format(1.5234, 2) == "1.52");
-    ASSERT_TRUE(NumberFormatter::format(1.5254, 2) == "1.53");
+    ASSERT_TRUE(NumberFormatter::format(1.5254, 2) == "1.53") << NumberFormatter::format(1.5254, 2);
     // hex
     ASSERT_TRUE(NumberFormatter::formatHex(123) == "7B");
     // for pointer
