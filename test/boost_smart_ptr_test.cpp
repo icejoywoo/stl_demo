@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "boost/smart_ptr.hpp"
+#include "boost/tuple/tuple.hpp"
 #include "gtest/gtest.h"
 
 class BoostSmartPtr : public testing::Test {
@@ -30,3 +31,10 @@ TEST_F(BoostSmartPtr, SharedPtrVector) {
         std::cout << *(*it) << std::endl;
     }
 }
+
+TEST_F(BoostSmartPtr, TupleTest) {
+    typedef boost::tuple<std::string, std::string> person;
+    person p("Boris", "Schaeling");
+    std::cout << p << std::endl;
+}
+
