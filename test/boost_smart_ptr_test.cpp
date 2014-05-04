@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+#include "boost/any.hpp"
 #include "boost/smart_ptr.hpp"
 #include "boost/tuple/tuple.hpp"
 #include "boost/tuple/tuple_comparison.hpp"
@@ -46,25 +47,36 @@ TEST_F(BoostSmartPtr, TupleTest) {
 
         std::cout << boost::make_tuple("Boris", "Schaeling", 43) << std::endl;
     }
-    
+
     {
-        typedef boost::tuple<std::string, std::string, int> person; 
-        person p1 = boost::make_tuple("Boris", "Schaeling", 43); 
-        person p2 = boost::make_tuple("Boris", "Becker", 43); 
-        std::cout << (p1 != p2) << std::endl; 
+        typedef boost::tuple<std::string, std::string, int> person;
+        person p1 = boost::make_tuple("Boris", "Schaeling", 43);
+        person p2 = boost::make_tuple("Boris", "Becker", 43);
+        std::cout << (p1 != p2) << std::endl;
     }
 
     {
-        typedef boost::tuple<std::string&, std::string&, int&> person; 
+        typedef boost::tuple<std::string&, std::string&, int&> person;
 
-        std::string firstname = "Boris"; 
-        std::string surname = "Schaeling"; 
-        int shoesize = 43; 
+        std::string firstname = "Boris";
+        std::string surname = "Schaeling";
+        int shoesize = 43;
         // boost::tie is a reference tuple
         person p = boost::tie(firstname, surname, shoesize); // same meaming with the setence belows
-        // person p = boost::make_tuple(boost::ref(firstname), boost::ref(surname), boost::ref(shoesize)); 
-        surname = "Becker"; 
-        std::cout << p << std::endl; 
+        // person p = boost::make_tuple(boost::ref(firstname), boost::ref(surname), boost::ref(shoesize));
+        surname = "Becker";
+        std::cout << p << std::endl;
     }
+}
+
+TEST_F(BoostSmartPtr, AnyTest) {
+    boost::any a = 1;
+    std::cout << boost::any_cast<int>(a) << std::endl;
+    a = 3.14;
+    std::cout << boost::any_cast<double>(a) << std::endl;
+    a = true;
+    std::cout << boost::any_cast<bool>(a) << std::endl;
+    a = std::string("Hello, World!"); // cannot be c-style string
+    std::cout << boost::any_cast<std::string>(a) << std::endl;
 }
 
