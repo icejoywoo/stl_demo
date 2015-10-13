@@ -2,7 +2,7 @@
 
 import os
 
-env = Environment(CXXFLAGS = "-Wall -g -O0 -std=c++11")
+env = Environment(CXXFLAGS = "-Wall -g -O0")
 
 SConscript(['thirdparty/gmock/SConscript',
             'thirdparty/gtest/SConscript'])
